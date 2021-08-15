@@ -1,8 +1,10 @@
+import Navbar from "./Navbar";
+
 const Footer = () =>
     <footer className="container bg-light">
         <div className="row">
             <div className="col">
-                Информация
+                <Navbar />
             </div>
             <div className="col">
                 Оплата
