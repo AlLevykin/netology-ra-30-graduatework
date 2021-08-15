@@ -1,6 +1,7 @@
 import Contacts from "./Contacts";
 import About from "./About";
 import Banner from "./Banner";
+import Catalog from "../components/Content/Catalog";
 
 export const pages = [
     {
@@ -19,7 +20,10 @@ export const pages = [
     {
         path: "/catalog.html",
         caption: "Каталог",
-        component: () => <h1>Каталог</h1>,
+        component: () => <div className="col">
+                <Banner />
+                <Catalog />
+            </div>,
         items: [
             {
                 path: "/catalog/:id.html",
