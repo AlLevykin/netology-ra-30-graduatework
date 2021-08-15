@@ -1,3 +1,4 @@
+import Contacts from "./Contacts";
 import About from "./About";
 import Banner from "./Banner";
 
@@ -46,7 +47,10 @@ export const pages = [
     {
         path: "/contacts.html",
         caption: "Контакты",
-        component: () => <h1>Контакты</h1>,
+        component: () => <div className="col">
+                <Banner />
+                <Contacts />
+            </div>,
         items: []
     }
 ]
