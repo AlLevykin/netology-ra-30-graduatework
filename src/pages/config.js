@@ -1,3 +1,5 @@
+import Banner from "./Banner";
+
 export const pages = [
     {
         path: "/",
@@ -34,7 +36,9 @@ export const pages = [
     {
         path: "/about.html",
         caption: "О маганине",
-        component: () => <h1>О маганине</h1>,
+        component: () => <div className="col">
+                <Banner />
+            </div>,
         items: []
     },
     {
