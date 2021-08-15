@@ -112,7 +112,7 @@ section {
   position: absolute;
   z-index: 5;
   right: 0;
-  top: 42px;
+  bottom: 0;
   height: 98px;
   width: 487px;
   font-weight: bold;
