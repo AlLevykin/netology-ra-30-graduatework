@@ -3,12 +3,13 @@ import About from "./About";
 import Banner from "./Banner";
 import Catalog from "../components/Content/Catalog";
 import Cart from "../components/Content/Cart";
+import Home from "../components/Content/Home";
 
 export const pages = [
     {
         path: "/",
         caption: "Главная",
-        component: () => <h1>Главная</h1>,
+        component: () => <Home />,
         items: [
             {
                 path: "/cart.html",
