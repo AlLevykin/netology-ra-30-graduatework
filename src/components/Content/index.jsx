@@ -1,5 +1,7 @@
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { pages } from '../../pages/config';
+import Banner from '../../pages/Banner';
+import NoMatch from '../../pages/NoMatch';
 
 const Content = () => {
 
@@ -13,7 +15,18 @@ const Content = () => {
     return (
         <main className="container">
             <div className="row">
-                {pagesToRoutes()}
+                <Switch>
+                    {pagesToRoutes()}
+                    <Route
+                        key="NoMatch"
+                        component={
+                            () => <div className="col">
+                                <Banner />
+                                <NoMatch />
+                            </div>
+                        }
+                    />
+                </Switch>
             </div>
         </main>
     );
