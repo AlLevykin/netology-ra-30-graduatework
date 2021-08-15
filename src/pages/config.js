@@ -2,6 +2,7 @@ import Contacts from "./Contacts";
 import About from "./About";
 import Banner from "./Banner";
 import Catalog from "../components/Content/Catalog";
+import Cart from "../components/Content/Cart";
 
 export const pages = [
     {
@@ -12,7 +13,9 @@ export const pages = [
             {
                 path: "/cart.html",
                 caption: "Корзина",
-                component: () => <h1>Корзина</h1>,
+                component: () => <div className="col">
+                        <Cart />
+                    </div>,
                 items: []
             }
         ]

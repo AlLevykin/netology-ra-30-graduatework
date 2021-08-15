@@ -1,4 +1,5 @@
 import logo from '../../img/header-logo.png';
+import CartLink from './CartLink';
 import Navbar from './Navbar';
 
 const Header = () =>
@@ -14,7 +15,7 @@ const Header = () =>
                     </div>
                     <div>
                         <div className="header-controls-pics">
-
+                            <CartLink />
                         </div>
                     </div>
                 </nav>
