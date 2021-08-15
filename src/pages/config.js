@@ -1,3 +1,4 @@
+import About from "./About";
 import Banner from "./Banner";
 
 export const pages = [
@@ -38,6 +39,7 @@ export const pages = [
         caption: "О маганине",
         component: () => <div className="col">
                 <Banner />
+                <About />
             </div>,
         items: []
     },
