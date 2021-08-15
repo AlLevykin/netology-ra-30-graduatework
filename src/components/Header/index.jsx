@@ -1,4 +1,5 @@
 import logo from '../../img/header-logo.png';
+import Navbar from './Navbar';
 
 const Header = () =>
     <header className="container bg-light">
@@ -9,11 +10,11 @@ const Header = () =>
                         <img src={logo} alt="Bosa Noga" />
                     </a>
                     <div className="collapse navbar-collapse">
-
+                        <Navbar />
                     </div>
                     <div>
                         <div className="header-controls-pics">
-                          
+
                         </div>
                     </div>
                 </nav>

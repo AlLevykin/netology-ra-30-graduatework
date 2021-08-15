@@ -6,7 +6,7 @@ const Content = () => {
     const pagesToRoutes = () => {
         const pageList = pages.flatMap(page => [page, ...page.items]);
         return pageList.map(page =>
-            <Route key={page.path} path={page.path} component={page.component} />
+            <Route key={page.path} path={page.path} component={page.component} exact />
         );
     };
 
