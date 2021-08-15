@@ -1,3 +1,4 @@
+import Copyright from "./Copyright";
 import Navbar from "./Navbar";
 import Payment from "./Payment";
 
@@ -9,6 +10,7 @@ const Footer = () =>
             </div>
             <div className="col">
                 <Payment />
+                <Copyright />
             </div>
             <div className="col text-right">
                 Контакты
