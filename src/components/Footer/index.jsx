@@ -1,4 +1,5 @@
 import Navbar from "./Navbar";
+import Payment from "./Payment";
 
 const Footer = () =>
     <footer className="container bg-light">
@@ -7,7 +8,7 @@ const Footer = () =>
                 <Navbar />
             </div>
             <div className="col">
-                Оплата
+                <Payment />
             </div>
             <div className="col text-right">
                 Контакты
