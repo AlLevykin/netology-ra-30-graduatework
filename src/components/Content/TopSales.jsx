@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import store from '../../store';
+import Card from './Card';
 
 const TopSales = () => {
 
@@ -8,7 +9,7 @@ const TopSales = () => {
         store.dispatch.topSales.getTopSales();
     }, []);
 
-    const { items, loading, success } = useSelector(
+    const { items, loading, success, error } = useSelector(
         (state) => ({ items: [...state.topSales], ...state.loading.models.topSales })
     )
 
@@ -23,9 +24,26 @@ const TopSales = () => {
                 </section>
             }
             {
+                error &&
+                <section className="top-sales d-flex justify-content-center">
+                    <div className="alert alert-danger" role="alert">
+                        {`Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`}
+                    </div>
+                </section>
+            }
+            {
                 success && items.length &&
                 <section className="top-sales">
                     <h2 className="text-center">Хиты продаж!</h2>
+                    <div className="row">
+                        {
+                            items.map(item =>
+                                <div className="col-4" key={item.id}>
+                                    <Card id={item.id} title={item.title} price={item.price} image={item.images[0]} />
+                                </div>
+                            )
+                        }
+                    </div>
                 </section>
             }
         </>
