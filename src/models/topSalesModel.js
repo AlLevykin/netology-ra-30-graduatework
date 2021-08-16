@@ -1,3 +1,5 @@
+import { getData } from './utils';
+
 export const topSalesModel = {
     name: 'topSales',
     state: [],
@@ -8,12 +10,9 @@ export const topSalesModel = {
     },
     effects: {
         async getTopSales() {
-            const response = await fetch('api/top-sales');
-            if (!response.ok) {
-                throw new Error(`${response.status}: ${response.statusText}`);
-            }
-            const items = await response.json();
-            this.updateItems(items);
+            await getData('api/top-sales').then(items =>
+                this.updateItems(items)
+            );
         }
     }
 }
