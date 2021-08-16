@@ -8,7 +8,7 @@ const Navbar = () =>
             {
                 pages.map(page =>
                     <li key={page.path} className="nav-item">
-                        <NavLink className="nav-link" activeClassName="nav-link active" to={page.path} exact>{page.caption}</NavLink>
+                        <NavLink className="nav-link link-secondary" activeClassName="nav-link active" to={page.path} exact>{page.caption}</NavLink>
                     </li>
                 )
             }
