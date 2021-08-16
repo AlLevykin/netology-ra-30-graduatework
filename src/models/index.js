@@ -1,7 +1,9 @@
 import { topSalesModel } from './topSalesModel';
+import { categoriesModel } from './categoriesModel';
 
 const models = {
-    topSalesModel
+    topSalesModel,
+    categoriesModel
 };
 
 export default models;
