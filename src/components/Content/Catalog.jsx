@@ -35,7 +35,7 @@ const Catalog = () => {
                 </div>
             }
             {
-                success && items.length &&
+                success &&
                 <div className="row row-cols-3 g-4">
                     {
                         items.map(item =>

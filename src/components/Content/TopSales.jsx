@@ -32,7 +32,7 @@ const TopSales = () => {
                 </section>
             }
             {
-                success && items.length &&
+                success &&
                 <section className="top-sales">
                     <h2 className="text-center">Хиты продаж!</h2>
                     <div className="row row-cols-3 g-4">
