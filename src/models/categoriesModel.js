@@ -5,7 +5,7 @@ export const categoriesModel = {
     state: [],
     reducers: {
         updateCategories(state, categories) {
-            return [{title: "Все"}, ...categories]
+            return [{id: 0, title: "Все"}, ...categories]
         }
     },
     effects: {
