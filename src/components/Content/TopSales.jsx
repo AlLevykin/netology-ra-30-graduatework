@@ -35,10 +35,10 @@ const TopSales = () => {
                 success && items.length &&
                 <section className="top-sales">
                     <h2 className="text-center">Хиты продаж!</h2>
-                    <div className="row">
+                    <div className="row row-cols-3 g-4">
                         {
                             items.map(item =>
-                                <div className="col-4" key={item.id}>
+                                <div className="col" key={item.id}>
                                     <Card id={item.id} title={item.title} price={item.price} image={item.images[0]} />
                                 </div>
                             )
