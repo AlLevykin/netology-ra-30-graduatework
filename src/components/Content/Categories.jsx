@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import store from '../../store';
 
 const Categories = () => {
@@ -12,6 +11,14 @@ const Categories = () => {
     const { categories, loading, success, error } = useSelector(
         (state) => ({ categories: [...state.categories], ...state.loading.models.categories })
     )
+
+    const { categoryId } = useSelector(
+        (state) => ({ categoryId: state.catalog.params.categoryId })
+    )
+
+    const categoryClickHandler = (id) => {
+        store.dispatch.catalog.setCategory(id);
+    }
 
     return (
         <>
@@ -32,12 +39,18 @@ const Categories = () => {
                 </section>
             }
             {
-                success && categories.length &&
+                success &&
                 <ul className="catalog-categories nav justify-content-center">
                     {
                         categories.map(category =>
                             <li key={category.id} className="nav-item">
-                                <NavLink className="nav-link link-secondary" activeClassName="nav-link active" to={`api/items${category.id ? "?categoryId=" + category.id : ""}`} exact>{category.title}</NavLink>
+                                <button
+                                    className={`btn btn-lg nav-link link-secondary  ${categoryId === category.id ? "active" : ""}`}
+                                    type="button"
+                                    onClick={() => categoryClickHandler(category.id)}
+                                >
+                                    {category.title}
+                                </button>
                             </li>
                         )
                     }

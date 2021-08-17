@@ -6,6 +6,9 @@ export const catalogModel = {
     reducers: {
         updateItems(state, items) {
             return { ...state, items: [...items] }
+        },
+        updateCategory(state, id) {
+            return { params: {...state.params, categoryId: id}, items: [] }
         }
     },
     effects: {
@@ -15,6 +18,10 @@ export const catalogModel = {
             await getData(url).then(items =>
                 this.updateItems(items)
             );
+        },
+        setCategory(payload) {
+            this.updateCategory(payload);
+            this.getItems();
         }
     }
 }
