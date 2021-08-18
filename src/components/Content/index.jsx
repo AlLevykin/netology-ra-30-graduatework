@@ -5,18 +5,17 @@ import NoMatch from '../../pages/NoMatch';
 
 const Content = () => {
 
-    const pagesToRoutes = () => {
-        const pageList = pages.flatMap(page => [page, ...page.items]);
-        return pageList.map(page =>
-            <Route key={page.path} path={page.path} component={page.component} exact />
-        );
-    };
+    const pageList = pages.flatMap(page => [page, ...page.items]);
 
     return (
         <main className="container">
             <div className="row">
                 <Switch>
-                    {pagesToRoutes()}
+                    {
+                        pageList.map(page =>
+                            <Route key={page.path} path={page.path} component={page.component} exact />
+                        )
+                    }
                     <Route
                         key="NoMatch"
                         component={
