@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logo from '../../img/header-logo.png';
 import CartLink from './CartLink';
 import Navbar from './Navbar';
+import Search from "./Search";
 
 const Header = () =>
     <header className="container bg-light">
@@ -16,6 +17,7 @@ const Header = () =>
                     </div>
                     <div>
                         <div className="header-controls-pics">
+                            <Search />
                             <CartLink />
                         </div>
                     </div>
