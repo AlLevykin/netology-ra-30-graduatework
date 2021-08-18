@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux';
 import store from '../../store';
 import Categories from "./Categories";
 import Card from './Card';
+import Search from './Search';
 
-const Catalog = () => {
+const Catalog = ({ hasSearchForm }) => {
 
     useEffect(() => {
         store.dispatch.catalog.getItems();
@@ -17,6 +18,9 @@ const Catalog = () => {
     return (
         <section className="catalog">
             <h2 className="text-center">Каталог</h2>
+            {
+                hasSearchForm && <Search />
+            }
             <Categories />
             {
                 loading &&

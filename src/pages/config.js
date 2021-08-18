@@ -26,7 +26,7 @@ export const pages = [
         caption: "Каталог",
         component: () => <div className="col">
                 <Banner />
-                <Catalog />
+                <Catalog hasSearchForm />
             </div>,
         items: [
             {

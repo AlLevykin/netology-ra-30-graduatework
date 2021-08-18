@@ -2,17 +2,29 @@ import { getData } from './utils';
 
 export const catalogModel = {
     name: 'catalog',
-    state: {params: {categoryId: 0, q: '', offset: 0}, items: [] },
+    state: { params: { categoryId: 0, q: '', offset: 0 }, items: [] },
     reducers: {
         updateItems(state, items) {
-            return { ...state, items: [...items] }
+            let newItems = [];
+            if (state.params.offset === 0) {
+                newItems = [...items];
+            } else {
+                newItems = [...state.items, ...items];
+            }
+            return { ...state, items: [...newItems] }
         },
-        updateCategory(state, id) {
-            return { params: {...state.params, categoryId: id}, items: [] }
+        updateCategory(state, categoryId) {
+            return { params: { ...state.params, categoryId }, items: [] }
+        },
+        updateQuery(state, q) {
+            return { ...state, params: { ...state.params, q } }
+        },
+        updateOffset(state, offset) {
+            return { ...state, params: { ...state.params, offset } }
         }
     },
     effects: {
-        async getItems(payload, {catalog}) {            
+        async getItems(payload, { catalog }) {
             const searchParams = new URLSearchParams(catalog.params);
             const url = `api/items?${searchParams.toString()}`;
             await getData(url).then(items =>
@@ -21,6 +33,13 @@ export const catalogModel = {
         },
         setCategory(payload) {
             this.updateCategory(payload);
+            this.getItems();
+        },
+        setQuery(payload) {
+            this.updateQuery(payload);
+        },
+        search(payload, { catalog }) {
+            this.updateOffset(0);
             this.getItems();
         }
     }
