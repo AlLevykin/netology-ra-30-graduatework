@@ -38,7 +38,7 @@ export const catalogModel = {
         setQuery(payload) {
             this.updateQuery(payload);
         },
-        search(payload, { catalog }) {
+        search() {
             this.updateOffset(0);
             this.getItems();
         }

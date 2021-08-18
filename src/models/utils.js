@@ -1,5 +1,6 @@
 export const getData = async (url) => {
-    const response = await fetch(url);
+    const host = window.location.origin;
+    const response = await fetch(`${host}/${url}`);
     if (!response.ok) {
         throw new Error(`${response.status}: ${response.statusText}`);
     }
