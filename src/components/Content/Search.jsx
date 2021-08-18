@@ -1,6 +1,11 @@
+import { useSelector } from 'react-redux';
 import store from '../../store';
 
 const Search = () => {
+
+    const q = useSelector(
+        (state) => state.catalog.params.q
+    )        
 
     const onChangeHandler = (event) => {
         const value = event.target.value;
@@ -25,6 +30,7 @@ const Search = () => {
                 type="search"
                 placeholder="Поиск"
                 onChange={onChangeHandler}
+                value={q}
             />
         </form>
     );
