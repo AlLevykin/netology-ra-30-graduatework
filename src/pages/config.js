@@ -4,6 +4,7 @@ import Banner from "./Banner";
 import Catalog from "../components/Content/Catalog";
 import Cart from "../components/Content/Cart";
 import Home from "../components/Content/Home";
+import Product from "../components/Content/Product";
 
 export const pages = [
     {
@@ -32,7 +33,7 @@ export const pages = [
             {
                 path: "/catalog/:id.html",
                 caption: "Карточка товара",
-                component: () => <h1>Карточка товара</h1>,
+                component: () => <Product />,
                 items: []
             }
         ]

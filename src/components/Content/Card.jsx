@@ -6,7 +6,7 @@ const Card = ({ id, title, price, image }) =>
             <p className="card-text">{`${price} руб.`}</p>
         </div>
         <div className="card-footer">
-            <a href={`/products/${id}.html`} className="btn btn-outline-primary">Заказать</a>
+            <a href={`/catalog/${id}.html`} className="btn btn-outline-primary">Заказать</a>
         </div>
     </div>;
 
