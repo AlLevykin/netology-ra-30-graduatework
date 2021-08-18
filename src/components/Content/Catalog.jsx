@@ -8,8 +8,9 @@ import Search from './Search';
 const Catalog = ({ hasSearchForm }) => {
 
     useEffect(() => {
+        if (!hasSearchForm) store.dispatch.catalog.setQuery('');
         store.dispatch.catalog.getItems();
-    }, []);
+    }, [hasSearchForm]);
 
     const { items, loading, success, error } = useSelector(
         (state) => ({ items: [...state.catalog.items], ...state.loading.models.catalog })
