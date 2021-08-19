@@ -27,6 +27,13 @@ const Product = () => {
         }
     }
 
+    const [count, changeCount] = useState(1);
+
+    const changeCountHandler = (a) => {
+        const newValue = count + a;
+        if (newValue > 0 && newValue < 11) changeCount(newValue);
+    }
+
     return (
         <>
             {
@@ -99,13 +106,25 @@ const Product = () => {
                                     }
                                 </p>
                                 <p>Количество: <span className="btn-group btn-group-sm pl-2">
-                                    <button className="btn btn-secondary">-</button>
-                                    <span className="btn btn-outline-primary">1</span>
-                                    <button className="btn btn-secondary">+</button>
+                                    <button
+                                        type="button"
+                                        className="btn btn-secondary"
+                                        onClick={()=> changeCountHandler(-1)}
+                                    >
+                                        -
+                                    </button>
+                                    <span className="btn btn-outline-primary">{count}</span>
+                                    <button
+                                        type="button"
+                                        className="btn btn-secondary"
+                                        onClick={()=> changeCountHandler(1)}
+                                    >
+                                        +
+                                    </button>
                                 </span>
                                 </p>
                             </div>
-                            <button className={`btn btn-danger btn-block btn-lg w-100 ${selectedSize === null && "disabled"}`}>В корзину</button>
+                            <button type="button" className={`btn btn-danger btn-block btn-lg w-100 ${selectedSize === null && "disabled"}`}>В корзину</button>
                         </div>
                     </div>
                 </section>
