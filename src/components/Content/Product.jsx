@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useHistory } from "react-router-dom";
 import store from '../../store';
 
 const Product = () => {
@@ -10,6 +10,8 @@ const Product = () => {
     const searchParams = new URLSearchParams(search);
     const sizeParam = searchParams.get('size');
     const countParam = Number(searchParams.get('count'));
+
+    const history = useHistory();
 
     useEffect(() => {
         store.dispatch.product.getProduct(id);
@@ -42,6 +44,7 @@ const Product = () => {
     }
 
     const addItemHandler = () => {
+        history.push("/cart.html");
         store.dispatch.order.addItem({
             id: product.id,
             title: product.title,
