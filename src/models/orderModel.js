@@ -31,6 +31,9 @@ export const orderModel = {
         },
         addItem(payload) {
             this.updateAddedItem(payload);
-        }
+        },
+        removeItem(payload) {
+            this.updateRemovedItem(payload);
+        }        
     }
 }
