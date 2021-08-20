@@ -11,10 +11,10 @@ export const orderModel = {
     },
     reducers: {
         updateAddedItem(state, item) {
-            return { ...state, items: [state.items.filter(i => i.id !== item.id), item] }
+            return { ...state, items: [...state.items.filter(i => i.id !== item.id), item] }
         },
         updateRemovedItem(state, id) {
-            return { ...state, items: [state.items.filter(i => i.id !== id)] }
+            return { ...state, items: state.items.filter(i => i.id !== id) }
         },
         clearOrder(state) {
             return { ...state, items: [] }
