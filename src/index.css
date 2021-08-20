@@ -170,6 +170,12 @@ section {
   }
 }
 
+/* Cart */
+.order-card {
+  max-width: 30rem; 
+  margin: 0 auto;
+}
+
 /* Top Sales */
 .top-sales {
   min-height: 300px;

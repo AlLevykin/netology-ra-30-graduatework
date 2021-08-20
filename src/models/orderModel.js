@@ -6,8 +6,8 @@ export const orderModel = {
         "owner": {
             "phone": '',
             "address": '',
-          },
-          "items": []
+        },
+        "items": []
     },
     reducers: {
         updateAddedItem(state, item) {
@@ -20,7 +20,7 @@ export const orderModel = {
             return { ...state, items: [] }
         },
         updateOwner(state, owner) {
-            return { ...state, owner }            
+            return { ...state, owner }
         }
     },
     effects: {
@@ -34,6 +34,12 @@ export const orderModel = {
         },
         removeItem(payload) {
             this.updateRemovedItem(payload);
-        }        
+        },
+        setOwnerPhone(payload, { order }) {
+            this.updateOwner({...order.owner, phone: payload});
+        },
+        setOwnerAddress(payload, { order }) {
+            this.updateOwner({...order.owner, address: payload});
+        }
     }
 }
