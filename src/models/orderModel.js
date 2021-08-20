@@ -10,10 +10,10 @@ export const orderModel = {
           "items": []
     },
     reducers: {
-        addItem(state, item) {
+        updateAddedItem(state, item) {
             return { ...state, items: [state.items.filter(i => i.id !== item.id), item] }
         },
-        removeItem(state, id) {
+        updateRemovedItem(state, id) {
             return { ...state, items: [state.items.filter(i => i.id !== id)] }
         },
         clearOrder(state) {
@@ -28,6 +28,9 @@ export const orderModel = {
             await sendData('api/order', order).then(
                 this.clearOrder()
             );
+        },
+        addItem(payload) {
+            this.updateAddedItem(payload);
         }
     }
 }

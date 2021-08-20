@@ -34,6 +34,15 @@ const Product = () => {
         if (newValue > 0 && newValue < 11) changeCount(newValue);
     }
 
+    const addItemHandler =() => {
+        store.dispatch.order.addItem({
+            id: product.id,
+            size: selectedSize,
+            price: product.price,
+            count: count
+        });
+    }
+
     return (
         <>
             {
@@ -109,7 +118,7 @@ const Product = () => {
                                     <button
                                         type="button"
                                         className="btn btn-secondary"
-                                        onClick={()=> changeCountHandler(-1)}
+                                        onClick={() => changeCountHandler(-1)}
                                     >
                                         -
                                     </button>
@@ -117,14 +126,20 @@ const Product = () => {
                                     <button
                                         type="button"
                                         className="btn btn-secondary"
-                                        onClick={()=> changeCountHandler(1)}
+                                        onClick={() => changeCountHandler(1)}
                                     >
                                         +
                                     </button>
                                 </span>
                                 </p>
                             </div>
-                            <button type="button" className={`btn btn-danger btn-block btn-lg w-100 ${selectedSize === null && "disabled"}`}>В корзину</button>
+                            <button
+                                type="button"
+                                className={`btn btn-danger btn-block btn-lg w-100 ${selectedSize === null && "disabled"}`}
+                                onClick={addItemHandler}
+                            >
+                                В корзину
+                            </button>
                         </div>
                     </div>
                 </section>
