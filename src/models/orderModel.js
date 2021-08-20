@@ -7,11 +7,12 @@ export const orderModel = {
             "phone": '',
             "address": '',
         },
-        "items": []
+        "items": [],
+        isSaved: false
     },
     reducers: {
         updateAddedItem(state, item) {
-            return { ...state, items: [...state.items.filter(i => i.id !== item.id), item] }
+            return { ...state, items: [...state.items.filter(i => i.id !== item.id), item], isSaved: false }
         },
         updateRemovedItem(state, id) {
             return { ...state, items: state.items.filter(i => i.id !== id) }
@@ -21,13 +22,19 @@ export const orderModel = {
         },
         updateOwner(state, owner) {
             return { ...state, owner }
-        }
+        },
+        setSaved(state, isSaved) {
+            return { ...state, isSaved }
+        }        
     },
     effects: {
         async saveOrder(payload, { order }) {
-            await sendData('api/order', order).then(
-                this.clearOrder()
-            );
+            await sendData('api/order', order).then( response => {
+                if (response.ok) {
+                    this.clearOrder();
+                    this.setSaved(true);                    
+                }
+            });
         },
         addItem(payload) {
             this.updateAddedItem(payload);
