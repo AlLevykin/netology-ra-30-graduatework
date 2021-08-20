@@ -9,7 +9,7 @@ const CartLink = () => {
 
     return (
         <div className="header-controls-pic header-controls-cart">
-            <Link className="stretched-link" to="cart.html" title="Корзина">
+            <Link className="stretched-link" to="/cart.html" title="Корзина">
                 <div className="header-controls-cart-menu"></div>
                 {
                     (cartFull > 0) &&
