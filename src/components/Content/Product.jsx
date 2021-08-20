@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useRouteMatch } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import store from '../../store';
 
 const Product = () => {
 
-    const match = useRouteMatch();
-
-    const id = match.params.id;
+    const { id } = useParams();
+    const { search } = useLocation();
+    const searchParams = new URLSearchParams(search);
+    const sizeParam = searchParams.get('size');
+    const countParam = Number(searchParams.get('count'));
 
     useEffect(() => {
         store.dispatch.product.getProduct(id);
@@ -17,7 +19,7 @@ const Product = () => {
         (state) => ({ product: { ...state.product }, ...state.loading.models.product })
     )
 
-    const [selectedSize, selectSize] = useState(null);
+    const [selectedSize, selectSize] = useState(sizeParam);
 
     const selectSizeHandler = (newSize) => {
         if (newSize === selectedSize) {
@@ -27,17 +29,22 @@ const Product = () => {
         }
     }
 
-    const [count, changeCount] = useState(1);
+    const [count, changeCount] = useState(
+        (countParam < 1 || countParam > 10) ?
+        1
+        :
+        countParam
+    );
 
     const changeCountHandler = (a) => {
         const newValue = count + a;
         if (newValue > 0 && newValue < 11) changeCount(newValue);
     }
 
-    const addItemHandler =() => {
+    const addItemHandler = () => {
         store.dispatch.order.addItem({
             id: product.id,
-            title: product.title, 
+            title: product.title,
             size: selectedSize,
             price: product.price,
             count: count

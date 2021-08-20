@@ -53,7 +53,13 @@ const Cart = () => {
                                 order.items.map((item, num) =>
                                     <tr key={item.id}>
                                         <th scope="row">{num + 1}</th>
-                                        <td><Link to={`/catalog/${item.id}.html`}>{item.title}</Link></td>
+                                        <td>
+                                            <Link
+                                                to={`/catalog/${item.id}.html?size=${item.size}&count=${item.count}`}
+                                            >
+                                                {item.title}
+                                            </Link>
+                                        </td>
                                         <td>{item.size}</td>
                                         <td>{item.count}</td>
                                         <td>{item.price} руб.</td>
