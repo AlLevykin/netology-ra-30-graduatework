@@ -37,6 +37,7 @@ const Product = () => {
     const addItemHandler =() => {
         store.dispatch.order.addItem({
             id: product.id,
+            title: product.title, 
             size: selectedSize,
             price: product.price,
             count: count
