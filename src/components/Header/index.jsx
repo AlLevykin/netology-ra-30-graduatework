@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 import Search from "./Search";
 
 const Header = () =>
-    <header className="container bg-light">
+    <header className="container bg-light sticky-top">
         <div className="row">
             <div className="col">
                 <nav className="navbar navbar-expand-sm navbar-light">
