@@ -33,9 +33,9 @@ const Product = () => {
 
     const [count, changeCount] = useState(
         (countParam < 1 || countParam > 10) ?
-        1
-        :
-        countParam
+            1
+            :
+            countParam
     );
 
     const changeCountHandler = (a) => {
@@ -78,7 +78,9 @@ const Product = () => {
                     <h2 className="text-center">{product.title}</h2>
                     <div className="row">
                         <div className="col-5">
-                            <img src={product.images[0]} className="img-fluid" alt={product.title} />
+                            <div className="ratio ratio-1x1">
+                                <img src={product.images[0]} className="card-img" alt={product.title} />
+                            </div>
                         </div>
                         <div className="col-7">
                             <table className="table table-bordered">
