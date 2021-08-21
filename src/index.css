@@ -231,6 +231,10 @@ section {
   box-shadow: none;
 }
 
+.card-img {
+  object-fit: contain;
+}
+
 /* Footer */
 .footer {
   padding: 0 25px;
