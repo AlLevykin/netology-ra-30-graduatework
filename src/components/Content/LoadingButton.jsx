@@ -31,7 +31,7 @@ const LoadingButton = () => {
                     >
                         {
                             loading &&
-                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" />
+                            <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" />
                         }
                         Загрузить ещё
                     </button>
