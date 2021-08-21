@@ -2,7 +2,7 @@ import { getData } from './utils';
 
 export const catalogModel = {
     name: 'catalog',
-    state: { params: { categoryId: 0, q: '', offset: 0 }, items: [] },
+    state: { params: { categoryId: 0, q: '', offset: 0 }, items: [], hasMoreData: true },
     reducers: {
         updateItems(state, items) {
             let newItems = [];
@@ -11,10 +11,18 @@ export const catalogModel = {
             } else {
                 newItems = [...state.items, ...items];
             }
-            return { ...state, items: [...newItems] }
+            return {
+                ...state,
+                items: [...newItems],
+                hasMoreData: items.length === 6,
+                params: {
+                    ...state.params,
+                    offset: items.length === 6 ? state.params.offset + 6 : 0
+                }
+            }
         },
         updateCategory(state, categoryId) {
-            return { params: { ...state.params, categoryId }, items: [] }
+            return { params: { ...state.params, categoryId, offset: 0 }, items: [] }
         },
         updateQuery(state, q) {
             return { ...state, params: { ...state.params, q } }

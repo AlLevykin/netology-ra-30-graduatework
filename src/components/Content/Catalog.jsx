@@ -4,6 +4,7 @@ import store from '../../store';
 import Categories from "./Categories";
 import Card from './Card';
 import Search from './Search';
+import LoadingButton from './LoadingButton';
 
 const Catalog = ({ hasSearchForm }) => {
 
@@ -41,15 +42,18 @@ const Catalog = ({ hasSearchForm }) => {
             }
             {
                 success &&
-                <div className="row row-cols-3 g-4">
-                    {
-                        items.map(item =>
-                            <div className="col" key={item.id}>
-                                <Card id={item.id} title={item.title} price={item.price} image={item.images[0]} />
-                            </div>
-                        )
-                    }
-                </div>
+                <>
+                    <div className="row row-cols-3 g-4">
+                        {
+                            items.map(item =>
+                                <div className="col" key={item.id}>
+                                    <Card id={item.id} title={item.title} price={item.price} image={item.images[0]} />
+                                </div>
+                            )
+                        }
+                    </div>
+                    <LoadingButton />
+                </>
             }
         </section>
     );
