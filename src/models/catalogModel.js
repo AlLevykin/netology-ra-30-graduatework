@@ -7,7 +7,7 @@ export const catalogModel = {
         updateItems(state, items) {
             let newItems = [];
             if (state.params.offset === 0) {
-                newItems = [...items];
+                newItems = items;
             } else {
                 newItems = [...state.items, ...items];
             }

@@ -18,7 +18,7 @@ const Product = () => {
     }, [id]);
 
     const { product, loading, success, error } = useSelector(
-        (state) => ({ product: { ...state.product }, ...state.loading.models.product })
+        (state) => ({ product: state.product, ...state.loading.models.product })
     )
 
     const [selectedSize, selectSize] = useState(sizeParam);

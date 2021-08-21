@@ -10,7 +10,7 @@ const TopSales = () => {
     }, []);
 
     const { items, loading, success, error } = useSelector(
-        (state) => ({ items: [...state.topSales], ...state.loading.models.topSales })
+        (state) => ({ items: state.topSales, ...state.loading.models.topSales })
     )
 
     return (

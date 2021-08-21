@@ -14,7 +14,7 @@ const Catalog = ({ hasSearchForm }) => {
     }, [hasSearchForm]);
 
     const { items, loading, success, error } = useSelector(
-        (state) => ({ items: [...state.catalog.items], ...state.loading.models.catalog })
+        (state) => ({ items: state.catalog.items, ...state.loading.models.catalog })
     )
 
     return (

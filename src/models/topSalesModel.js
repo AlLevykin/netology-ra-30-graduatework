@@ -5,7 +5,7 @@ export const topSalesModel = {
     state: [],
     reducers: {
         updateItems(state, items) {
-            return [...items]
+            return items;
         }
     },
     effects: {

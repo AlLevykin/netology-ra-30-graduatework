@@ -9,7 +9,7 @@ const Categories = () => {
     }, []);
 
     const { categories, loading, success, error } = useSelector(
-        (state) => ({ categories: [...state.categories], ...state.loading.models.categories })
+        (state) => ({ categories: state.categories, ...state.loading.models.categories })
     )
 
     const { categoryId } = useSelector(
