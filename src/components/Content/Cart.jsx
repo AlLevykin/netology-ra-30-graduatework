@@ -29,7 +29,17 @@ const Cart = () => {
                 text: `Во время оформления заказа произошла ошибка (${error}).`
             });
         }
-    }, [error]);    
+    }, [error]); 
+    
+    useEffect(() => {
+        if (order.isSaved) {
+            store.dispatch.log.addMessage({
+                type: 'success',
+                caption: 'Оформление заказа',
+                text: 'Заказ успешно оформлен.'
+            });
+        }
+    }, [order.isSaved]);    
 
     const isOrderValid = order.items.length > 0 &&
         order.owner.phone &&
