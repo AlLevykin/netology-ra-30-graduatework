@@ -4,6 +4,7 @@ import store from '../../store';
 import Content from '../Content';
 import Footer from '../Footer';
 import Header from "../Header";
+import Toasts from './Toasts';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Header />
         <Content />
         <Footer />
+        <Toasts />
       </Router>
     </Provider>
   );
