@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import store from '../../store';
 import Categories from "./Categories";
 import Card from './Card';
@@ -7,6 +8,8 @@ import Search from './Search';
 import LoadingButton from './LoadingButton';
 
 const Catalog = ({ hasSearchForm }) => {
+
+    const history = useHistory();
 
     const { items, loading, success, error } = useSelector(
         (state) => ({ items: state.catalog.items, ...state.loading.models.catalog })
@@ -19,8 +22,9 @@ const Catalog = ({ hasSearchForm }) => {
                 caption: 'Каталог',
                 text: `Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`
             });
+            history.push('/support.html');
         }
-    }, [error]);
+    }, [error, history]);
 
     useEffect(() => {
         if (items.length === 0 && success) {

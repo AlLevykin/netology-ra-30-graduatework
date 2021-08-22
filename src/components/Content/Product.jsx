@@ -28,8 +28,9 @@ const Product = () => {
                 caption: 'Страница товара',
                 text: `Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`
             });
+            history.push('/support.html');
         }
-    }, [error]);
+    }, [error, history]);
 
     const [selectedSize, selectSize] = useState(sizeParam);
 

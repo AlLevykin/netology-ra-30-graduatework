@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import store from '../../store';
 
 const LoadingButton = () => {
+
+    const history = useHistory();
 
     const { hasMoreData, loading, error } = useSelector(
         (state) => ({ hasMoreData: state.catalog.hasMoreData, ...state.loading.models.catalog })
@@ -15,8 +18,9 @@ const LoadingButton = () => {
                 caption: 'Каталог',
                 text: `Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`
             });
+            history.push('/support.html');
         }
-    }, [error]);    
+    }, [error, history]);    
 
     const onClickHandler = () => {
         store.dispatch.catalog.getItems();

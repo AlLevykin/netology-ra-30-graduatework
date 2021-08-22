@@ -5,6 +5,7 @@ import Catalog from "../components/Content/Catalog";
 import Cart from "../components/Content/Cart";
 import Home from "../components/Content/Home";
 import Product from "../components/Content/Product";
+import Support from "./Support";
 
 export const pages = [
     {
@@ -19,7 +20,15 @@ export const pages = [
                         <Cart />
                     </div>,
                 items: []
-            }
+            },
+            {
+                path: "/support.html",
+                caption: "Техническая поддержка",
+                component: () => <div className="col">
+                        <Support />
+                    </div>,
+                items: []
+            }            
         ]
     },
     {

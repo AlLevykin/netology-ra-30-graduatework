@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import store from '../../store';
 
 const Cart = () => {
+
+    const history = useHistory();
 
     const [hasAgreement, setAgreement] = useState(false);
 
@@ -22,14 +25,15 @@ const Cart = () => {
     )
 
     useEffect(() => {
-        if (error) {
+        if (error) {                    
             store.dispatch.log.addMessage({
                 type: 'danger',
                 caption: 'Оформление заказа',
                 text: `Во время оформления заказа произошла ошибка (${error}).`
             });
+            history.push('/support.html');
         }
-    }, [error]); 
+    }, [error, history]); 
     
     useEffect(() => {
         if (order.isSaved) {

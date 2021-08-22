@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import store from '../../store';
 import Card from './Card';
 
 const TopSales = () => {
+
+    const history = useHistory();
 
     const { items, loading, success, error } = useSelector(
         (state) => ({ items: state.topSales, ...state.loading.models.topSales })
@@ -20,8 +23,9 @@ const TopSales = () => {
                 caption: 'Хиты продаж',
                 text: `Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`
             });
+            history.push('/support.html');
         }
-    }, [error]);
+    }, [error, history]);
 
     return (
         <>

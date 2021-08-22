@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import store from '../../store';
 
 const Categories = () => {
+
+    const history = useHistory();
 
     const { categories, loading, success, error } = useSelector(
         (state) => ({ categories: state.categories, ...state.loading.models.categories })
@@ -23,8 +26,9 @@ const Categories = () => {
                 caption: 'Категории товара',
                 text: `Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`
             });
+            history.push('/support.html');
         }
-    }, [error]);
+    }, [error, history]);
 
     const categoryClickHandler = (id) => {
         store.dispatch.catalog.setCategory(id);
