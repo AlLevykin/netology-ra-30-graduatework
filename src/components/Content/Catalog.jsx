@@ -8,14 +8,24 @@ import LoadingButton from './LoadingButton';
 
 const Catalog = ({ hasSearchForm }) => {
 
+    const { items, loading, success, error } = useSelector(
+        (state) => ({ items: state.catalog.items, ...state.loading.models.catalog })
+    )
+
+    useEffect(() => {
+        if (error) {
+            store.dispatch.log.addMessage({
+                type: 'danger',
+                caption: 'Каталог',
+                text: `Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`
+            });
+        }
+    }, [error]);
+
     useEffect(() => {
         if (!hasSearchForm) store.dispatch.catalog.setQuery('');
         store.dispatch.catalog.getItems();
     }, [hasSearchForm]);
-
-    const { items, loading, success, error } = useSelector(
-        (state) => ({ items: state.catalog.items, ...state.loading.models.catalog })
-    )
 
     return (
         <section className="catalog">
@@ -29,14 +39,6 @@ const Catalog = ({ hasSearchForm }) => {
                 <div className="row justify-content-center">
                     <div className="spinner-grow align-middle" role="status">
                         <span className="visually-hidden">Загрузка...</span>
-                    </div>
-                </div>
-            }
-            {
-                error &&
-                <div className="row justify-content-center">
-                    <div className="alert alert-danger" role="alert">
-                        {`Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`}
                     </div>
                 </div>
             }

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import store from '../../store';
 
@@ -7,20 +8,22 @@ const LoadingButton = () => {
         (state) => ({ hasMoreData: state.catalog.hasMoreData, ...state.loading.models.catalog })
     )
 
+    useEffect(() => {
+        if (error) {
+            store.dispatch.log.addMessage({
+                type: 'danger',
+                caption: 'Каталог',
+                text: `Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`
+            });
+        }
+    }, [error]);    
+
     const onClickHandler = () => {
         store.dispatch.catalog.getItems();
     }
 
     return (
-        <>
-            {
-                error &&
-                <div className="row justify-content-center">
-                    <div className="alert alert-danger" role="alert">
-                        {`Во время загрузки данных произошла ошибка (${error}). Повторите загрузку позже.`}
-                    </div>
-                </div>
-            }            
+        <>            
             {
                 hasMoreData &&
                 <div className="text-center my-3">

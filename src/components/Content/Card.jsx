@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const Card = ({ id, title, price, image }) =>
-    <div className="card catalog-item-card">
+    <div className="card catalog-item-card h-100">
         <div className="ratio ratio-1x1">
             <img src={image} className="card-img" alt={title} />
         </div>

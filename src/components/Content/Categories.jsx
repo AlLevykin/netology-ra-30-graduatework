@@ -4,17 +4,27 @@ import store from '../../store';
 
 const Categories = () => {
 
-    useEffect(() => {
-        store.dispatch.categories.getCategories();
-    }, []);
-
     const { categories, loading, success, error } = useSelector(
         (state) => ({ categories: state.categories, ...state.loading.models.categories })
     )
 
     const { categoryId } = useSelector(
         (state) => ({ categoryId: state.catalog.params.categoryId })
-    )
+    )    
+
+    useEffect(() => {
+        store.dispatch.categories.getCategories();
+    }, []);
+
+    useEffect(() => {
+        if (error) {
+            store.dispatch.log.addMessage({
+                type: 'danger',
+                caption: 'Категории товара',
+                text: `Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`
+            });
+        }
+    }, [error]);
 
     const categoryClickHandler = (id) => {
         store.dispatch.catalog.setCategory(id);
@@ -29,14 +39,6 @@ const Categories = () => {
                         <span className="visually-hidden">Загрузка...</span>
                     </div>
                 </div>
-            }
-            {
-                error &&
-                <section className="top-sales d-flex justify-content-center">
-                    <div className="alert alert-danger" role="alert">
-                        {`Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`}
-                    </div>
-                </section>
             }
             {
                 success &&

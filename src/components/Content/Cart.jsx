@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
@@ -19,6 +20,16 @@ const Cart = () => {
             ...state.loading.effects.order.saveOrder
         })
     )
+
+    useEffect(() => {
+        if (error) {
+            store.dispatch.log.addMessage({
+                type: 'danger',
+                caption: 'Оформление заказа',
+                text: `Во время оформления заказа произошла ошибка (${error}).`
+            });
+        }
+    }, [error]);    
 
     const isOrderValid = order.items.length > 0 &&
         order.owner.phone &&
@@ -53,21 +64,6 @@ const Cart = () => {
                 <section className="cart d-flex justify-content-center">
                     <div className="spinner-grow align-middle" role="status">
                         <span className="visually-hidden">Оформление заказа ...</span>
-                    </div>
-                </section>
-            }
-            {
-                error &&
-                <section className="cart d-flex justify-content-center">
-                    <div className="alert alert-danger w-100" role="alert">
-                        {`Во время оформления заказа произошла ошибка (${error}).`}
-                        <button
-                            className="btn btn-danger"
-                            type="button"
-                            onClick={() => store.dispatch.order.saveOrder()}
-                        >
-                            Повторить
-                        </button>
                     </div>
                 </section>
             }

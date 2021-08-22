@@ -13,13 +13,23 @@ const Product = () => {
 
     const history = useHistory();
 
+    const { product, loading, success, error } = useSelector(
+        (state) => ({ product: state.product, ...state.loading.models.product })
+    )    
+
     useEffect(() => {
         store.dispatch.product.getProduct(id);
     }, [id]);
 
-    const { product, loading, success, error } = useSelector(
-        (state) => ({ product: state.product, ...state.loading.models.product })
-    )
+    useEffect(() => {
+        if (error) {
+            store.dispatch.log.addMessage({
+                type: 'danger',
+                caption: 'Страница товара',
+                text: `Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`
+            });
+        }
+    }, [error]);
 
     const [selectedSize, selectSize] = useState(sizeParam);
 
@@ -61,14 +71,6 @@ const Product = () => {
                 <section className="catalog-item d-flex justify-content-center">
                     <div className="spinner-grow align-middle" role="status">
                         <span className="visually-hidden">Загрузка...</span>
-                    </div>
-                </section>
-            }
-            {
-                error &&
-                <section className="catalog-item d-flex justify-content-center">
-                    <div className="alert alert-danger" role="alert">
-                        {`Во время загрузки данных произошла ошибка (${error}). Попробуйте обновить страницу позже.`}
                     </div>
                 </section>
             }
