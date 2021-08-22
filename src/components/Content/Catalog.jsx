@@ -23,6 +23,16 @@ const Catalog = ({ hasSearchForm }) => {
     }, [error]);
 
     useEffect(() => {
+        if (items.length === 0 && success) {
+            store.dispatch.log.addMessage({
+                type: 'warning',
+                caption: 'Каталог',
+                text: 'Список товаров в каталоге пуст. Выбирете другую категорию товаров или введите новую строку поиска.'
+            });
+        }
+    }, [items.length, success]);    
+
+    useEffect(() => {
         if (!hasSearchForm) store.dispatch.catalog.setQuery('');
         store.dispatch.catalog.getItems();
     }, [hasSearchForm]);
