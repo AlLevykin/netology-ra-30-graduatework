@@ -22,7 +22,7 @@ export const catalogModel = {
             }
         },
         updateCategory(state, categoryId) {
-            return { params: { ...state.params, categoryId, offset: 0 }, items: [] }
+            return { params: { ...state.params, categoryId, offset: 0 } }
         },
         updateQuery(state, q) {
             return { ...state, params: { ...state.params, q } }
